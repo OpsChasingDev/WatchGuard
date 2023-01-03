@@ -29,5 +29,3 @@ function Download-WSM {
         Write-Output $DownloadError
     }
 }
-
-Download-WSM
