@@ -29,3 +29,5 @@ function Download-WSM {
         Write-Output $DownloadError
     }
 }
+
+# Start-Process C:\Users\robert.SAVANTCTS\Downloads\wsm_12_9.exe -ArgumentList '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART' -Wait
