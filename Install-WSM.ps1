@@ -6,13 +6,9 @@ function Format-WSMVersion {
         [Parameter(Mandatory)]
         [System.Management.Automation.SemanticVersion]$Version
     )
-
-
-    $obj = [PSCustomObject]@{
-        Major = $Major
-        Minor = $Minor
-        Patch = $Patch
+    $VersionString = [string]$Version.Major + "_" + [string]$Version.Minor
+    if ($Version.Patch) {
+        $VersionString = $VersionString + "_" + $Version.Patch
     }
-    
-    Write-Output $obj
+    Write-Output $VersionString
 }
