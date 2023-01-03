@@ -1,5 +1,3 @@
-# Invoke-WebRequest -Uri https://cdn.watchguard.com/SoftwareCenter/Files/WSM/12_4_1/wsm_12_4_1.exe -OutFile "C:\wsm_12_9.exe"
-
 function Format-WSMVersion {
     [CmdletBinding()]
     param (
@@ -12,3 +10,7 @@ function Format-WSMVersion {
     }
     Write-Output $VersionString
 }
+
+$Version = Format-WSMVersion
+$Uri = "https://cdn.watchguard.com/SoftwareCenter/Files/WSM/$($Version)/wsm_$($Version).exe"
+Invoke-WebRequest -Uri $Uri -OutFile "C:\wsm_12_9.exe"
