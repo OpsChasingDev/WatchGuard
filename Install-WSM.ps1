@@ -11,6 +11,10 @@ function Format-WSMVersion {
     Write-Output $VersionString
 }
 
-$Version = Format-WSMVersion
-$Uri = "https://cdn.watchguard.com/SoftwareCenter/Files/WSM/$($Version)/wsm_$($Version).exe"
-Invoke-WebRequest -Uri $Uri -OutFile "C:\wsm_12_9.exe"
+function Download-WSM {
+    $Version = Format-WSMVersion
+    $Uri = "https://cdn.watchguard.com/SoftwareCenter/Files/WSM/$($Version)/wsm_$($Version).exe"
+    Invoke-WebRequest -Uri $Uri -OutFile "C:\wsm_$($Version).exe"
+}
+
+Download-WSM
