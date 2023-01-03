@@ -28,4 +28,10 @@ function Download-WSM {
     catch {
         Write-Output $DownloadError
     }
+
+    # output downloaded file path
+    $DownloadPath = [PSCustomObject]@{
+        Path = $Path
+    }
+    Write-Output $DownloadPath
 }
