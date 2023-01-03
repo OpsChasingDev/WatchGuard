@@ -36,9 +36,24 @@ function Download-WSM {
     Write-Output $DownloadPath
 }
 
+function Install-WSM {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory,
+            ValueFromPipelineByPropertyName)]
+        [string]$Path
+    )
+    Start-Process $Path -ArgumentList '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART' -Wait
+}
+
 $Path = (Download-WSM -Version 12.9).Path
+
 do {
-    Test-Path $Path
-    Start-Sleep -Seconds 1
+    $null = Test-Path $Path
 } until ($Path)
-Start-Process $Path -ArgumentList '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART' -Wait
+
+if ($Path) {
+    Install-WSM -Path $Path
+}
+
+Write-Output "Success"
