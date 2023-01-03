@@ -35,3 +35,10 @@ function Download-WSM {
     }
     Write-Output $DownloadPath
 }
+
+$Path = (Download-WSM -Version 12.9).Path
+do {
+    Test-Path $Path
+    Start-Sleep -Seconds 1
+} until ($Path)
+Start-Process $Path -ArgumentList '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART' -Wait
