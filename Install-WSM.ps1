@@ -46,8 +46,12 @@ function Install-WSM {
     Start-Process $Path -ArgumentList '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART' -Wait
 }
 
-$Path = (Download-WSM -Version 12.9).Path
+do {
+    [System.Management.Automation.SemanticVersion]$Version = Read-Host "Version to install (e.g. '12.9' or '11.8.3')"
+} while (!$Version)
 
+$Path = (Download-WSM -Version 12.9).Path
+<#
 do {
     $null = Test-Path $Path
 } until ($Path)
@@ -57,3 +61,4 @@ if ($Path) {
 }
 
 Write-Output "Success"
+#>
