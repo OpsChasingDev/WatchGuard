@@ -3,7 +3,7 @@
     - support string portion of semantic versioning (the "beta" part of "12.3.1-beta")
 #>
 
-function Download-WSM {
+function Get-WSM {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]
@@ -51,19 +51,22 @@ function Install-WSM {
     Start-Process $Path -ArgumentList '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART' -Wait
 }
 
-do {
-    [System.Management.Automation.SemanticVersion]$Version = Read-Host "Version to install (e.g. '12.9' or '11.8.3')"
-} while (!$Version)
+function Deploy-WSM {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory,
+            HelpMessage = "Enter a semantic-format version (e.g. 12.3.0 or 6.2-U3")]
+        [System.Management.Automation.SemanticVersion]$Version
+    )
 
-$Path = (Download-WSM -Version 12.9).Path
-<#
-do {
-    $null = Test-Path $Path
-} until ($Path)
+    $Path = (Get-WSM -Version $Version).Path
 
-if ($Path) {
+    do {
+        $null = Test-Path $Path
+        Start-Sleep -Seconds 1
+    } until ($Path)
+    
     Install-WSM -Path $Path
+    
+    Write-Output "Success"
 }
-
-Write-Output "Success"
-#>
