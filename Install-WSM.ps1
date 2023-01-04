@@ -1,8 +1,3 @@
-<#
-    - finish constructor
-    - support string portion of semantic versioning (the "beta" part of "12.3.1-beta")
-#>
-
 function Get-WSM {
     <#
     .SYNOPSIS
