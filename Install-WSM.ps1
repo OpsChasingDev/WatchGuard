@@ -30,16 +30,19 @@ function Get-WSM {
     if ($Version.Patch) {
         $VersionString = $VersionString + "_" + $Version.Patch
     }
+    Write-Verbose "Version string is $VersionString"
 
     # set to current location if not specified
     if (!$Path) {
         $Path = (Get-Location).Path + "\wsm_$($VersionString).exe"
     }
+    Write-Verbose "Path is $Path"
 
     # download
     $Uri = "https://cdn.watchguard.com/SoftwareCenter/Files/WSM/$($VersionString)/wsm_$($VersionString).exe"
     try {
         Invoke-WebRequest -Uri $Uri -OutFile $Path -ErrorAction Stop -ErrorVariable DownloadError
+        Write-Verbose "File downloaded"
     }
     catch {
         Write-Output $DownloadError
@@ -73,7 +76,9 @@ function Install-WSM {
         [string]$Path
     )
     Start-Process $Path -ArgumentList '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART' -Wait
+    Write-Verbose "File installed"
     Remove-Item $Path -Force
+    Write-Verbose "File removed"
 }
 
 function Deploy-WSM {
@@ -94,14 +99,14 @@ function Deploy-WSM {
         [System.Management.Automation.SemanticVersion]$Version
     )
 
-    $Path = (Get-WSM -Version $Version).Path
+    $Path = (Get-WSM -Version $Version -Verbose).Path
 
     do {
         $null = Test-Path $Path
         Start-Sleep -Seconds 1
     } until ($Path)
     
-    Install-WSM -Path $Path
+    Install-WSM -Path $Path -Verbose
     
     Write-Output "Success"
 }
