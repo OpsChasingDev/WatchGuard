@@ -4,6 +4,18 @@
 #>
 
 function Get-WSM {
+    <#
+    .SYNOPSIS
+        Downloads a desired version of the Watchguard System Manager software.
+    .DESCRIPTION
+        Downloads a desired version of the Watchguard System Manager software.
+    .NOTES
+        Inteded use is being called from Deploy-WSM.
+    .EXAMPLE
+        Get-WSM -Version 12.8.2
+        Downloads WSM version 12.8.2 to the current directory.
+    #>
+    
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]
