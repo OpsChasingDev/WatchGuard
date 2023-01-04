@@ -1,3 +1,7 @@
+<#
+    support custom download path
+#>
+
 function Get-WSM {
     <#
     .SYNOPSIS
