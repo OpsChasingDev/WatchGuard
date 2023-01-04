@@ -1,5 +1,5 @@
 <#
-    - support custom download path
+    - have file removed after installation
 #>
 
 function Get-WSM {
