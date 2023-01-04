@@ -54,6 +54,19 @@ function Get-WSM {
 }
 
 function Install-WSM {
+    <#
+    .SYNOPSIS
+        Installs Watchguard System Manager
+    .DESCRIPTION
+        Installs Watchguard System Manager
+    .NOTES
+        Inteded use is being called from Deploy-WSM.
+    .EXAMPLE
+        PS C:\> $Path = (Get-WSM -Version $Version).Path
+        PS C:\> Install-WSM -Path $Path
+        The first command downloads a desired version of WSM and stores the download path.  The second command installs WSM using the installer at the stored path variable.
+    #>
+    
     [CmdletBinding()]
     param (
         [Parameter(Mandatory,
