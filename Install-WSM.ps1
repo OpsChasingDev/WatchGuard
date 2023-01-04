@@ -77,6 +77,16 @@ function Install-WSM {
 }
 
 function Deploy-WSM {
+    <#
+    .SYNOPSIS
+        Calls Get-WSM and Install-WSM to perform a complete download and installation of WSM at any desired, valid version.
+    .DESCRIPTION
+        Calls Get-WSM and Install-WSM to perform a complete download and installation of WSM at any desired, valid version.
+    .EXAMPLE
+        PS C:\> Deploy-WSM -Version 12.8.2
+        Downloads and installs WSM version 12.8.2
+    #>
+    
     [CmdletBinding()]
     param (
         [Parameter(Mandatory,
