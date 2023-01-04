@@ -1,7 +1,3 @@
-<#
-    - add verbose
-#>
-
 function Get-WSM {
     <#
     .SYNOPSIS
