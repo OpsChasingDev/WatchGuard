@@ -1,5 +1,5 @@
 <#
-    - have file removed after installation
+    - add verbose
 #>
 
 function Get-WSM {
