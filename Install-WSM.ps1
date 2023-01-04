@@ -73,6 +73,7 @@ function Install-WSM {
         [string]$Path
     )
     Start-Process $Path -ArgumentList '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART' -Wait
+    Remove-Item $Path -Force
 }
 
 function Deploy-WSM {
